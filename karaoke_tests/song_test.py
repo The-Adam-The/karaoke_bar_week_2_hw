@@ -14,5 +14,7 @@ class TestSong(unittest.TestCase):
 
     def test_song_has_genre(self):
         self.assertEqual("City Pop", self.plastic_love.genre)
+
+    
     
     

@@ -6,3 +6,4 @@ class Song:
         self.genre = genre
 
         
+    
