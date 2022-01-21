@@ -9,10 +9,11 @@ class TestRoom(unittest.TestCase):
         self.tomomi = Guest("Tomomi", 28, 439900)
         self.honda = Guest("Honda", 43, 209900)
         self.tanaka = Guest("Tanaka", 23, 200390)
-        self.yoshida = Guest("Yoshida", 31, 200499)
+        self.yoshida = Guest("Yoshida", 31, 200500)
         self.david = Guest("David", 29, 499000)
-        self.sarah = Guest("Sarah", 23, 249095)
+        self.sarah = Guest("Sarah", 23, 300)
         self.hashimoto = Guest("Hashimoto", 30, 348987)
+        self.ginko = Guest("Ginko", 32, 200)
 
         self.plastic_love = Song("Plastic Love", "Mariya Takeuchi", "City Pop")
         self.master_of_puppets = Song("Master of Puppets", "Metallica", "Metal")
@@ -67,4 +68,18 @@ class TestRoom(unittest.TestCase):
     def test_room_has_song_list(self):
         self.assertEqual([self.stayin_alive], self.room3.song_list)
     
-    
+    def test_entry_fee(self):
+        self.assertEqual(500, self.room1.entry_fee)
+
+    def test_customer_has_sufficient_funds(self):
+        self.assertEqual(True, self.room1.customer_has_sufficient_funds(self.david.money))
+
+    def test_customer_has_insufficient_funds(self):
+        self.assertEqual(False, self.room1.customer_has_sufficient_funds(self.sarah.money))
+
+    def test_pay_entry_fee(self):
+        self.room1.pay_entry_fee(self.yoshida)
+        self.assertEqual(200000, self.yoshida.money)
+
+    def test_check_in_guest_denied_entry(self):
+        self.assertEqual("The following guests have insufficient funds: Sarah Ginko" ,self.room1.check_in_guest(self.sarah, self.ginko ))
