@@ -23,6 +23,10 @@ class Room:
     def pay_entry_fee(self, guest):
         guest.money -= self.entry_fee
 
+    def favorite_song_react(self, guest, song):
+        print(f"{guest}: かこい! {song}! この曲が大好きだ! 歌いたい!")
+        return f"{guest}: かこい! {song}! この曲が大好きだ! 歌いたい!"
+
         
     def check_in_guest(self, *guests):
         denied_entry_list = []
@@ -38,12 +42,17 @@ class Room:
             if guest.money >= self.entry_fee:
                 self.pay_entry_fee(guest)
                 self.current_occupancy.append(guest)
+                for song in self.song_list:
+                    print(song)
+                    if guest.favorite_song == song.title:
+                        self.favorite_song_react(guest.name, song.title)
             else:
                 denied_entry_list.append(guest.name)
 
         if denied_entry_list:
             out_string = " ".join([str(name) for name in denied_entry_list])
             return f"The following guests have insufficient funds: {out_string}"
+        
 
     def check_out_guest(self, *guests):
         for guest in guests:
