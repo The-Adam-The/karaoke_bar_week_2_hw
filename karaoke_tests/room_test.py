@@ -6,14 +6,14 @@ from classes.song import Song
 class TestRoom(unittest.TestCase):
     
     def setUp(self):
-        self.tomomi = Guest("Tomomi", 28, 439900)
-        self.honda = Guest("Honda", 43, 209900)
-        self.tanaka = Guest("Tanaka", 23, 200390)
-        self.yoshida = Guest("Yoshida", 31, 200500)
-        self.david = Guest("David", 29, 499000)
-        self.sarah = Guest("Sarah", 23, 300)
-        self.hashimoto = Guest("Hashimoto", 30, 348987)
-        self.ginko = Guest("Ginko", 32, 200)
+        self.tomomi = Guest("Tomomi", 28, 439900, "Stayin' Alive")
+        self.honda = Guest("Honda", 43, 209900, "Guile Theme")
+        self.tanaka = Guest("Tanaka", 23, 200390, "Hotel California")
+        self.yoshida = Guest("Yoshida", 31, 200500, "Smells like Teen Spirit")
+        self.david = Guest("David", 29, 499000, "The Impossible Dream")
+        self.sarah = Guest("Sarah", 23, 300, "Combine Harvester")
+        self.hashimoto = Guest("Hashimoto", 30, 348987, "Jailhouse Rock")
+        self.ginko = Guest("Ginko", 32, 200, "Scrub")
 
         self.plastic_love = Song("Plastic Love", "Mariya Takeuchi", "City Pop")
         self.master_of_puppets = Song("Master of Puppets", "Metallica", "Metal")
@@ -83,3 +83,10 @@ class TestRoom(unittest.TestCase):
 
     def test_check_in_guest_denied_entry(self):
         self.assertEqual("The following guests have insufficient funds: Sarah Ginko" ,self.room1.check_in_guest(self.sarah, self.ginko ))
+
+    def test_guest_responds_to_favorite_song(self):
+        self.assertEqual("Honda: かこい! Guile Theme! この曲が大好きだ! 歌いたい!", self.room1.favorite_song_react(self.honda.name))
+
+    # def test_guest_responds_to_favorite_song_in_room(self):
+    #     self.assertEqual("Tomomi: かこい! Stayin' Alive! この曲が大好きだ! 歌いたい!", self.room3.check_in_guest(self.tomomi))
+        #Is there a way to test if a statement has been printed?
