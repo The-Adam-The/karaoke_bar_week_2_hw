@@ -1,14 +1,12 @@
-
-
-
 class Room:
 
-    def __init__(self, room_num, capacity, current_occupancy, song_list):
+    def __init__(self, room_num, capacity, current_occupancy, song_list, bar_tab):
         self.room_num = room_num
         self.capacity = capacity
         self.current_occupancy = current_occupancy
         self.song_list = song_list
         self.entry_fee = 500
+        self.bar_tab = bar_tab
 
     def check_room_availability(self):
         if self.current_occupancy:
@@ -25,9 +23,8 @@ class Room:
 
     def favorite_song_react(self, guest, song):
         print(f"{guest}: かこい! {song}! この曲が大好きだ! 歌いたい!")
-        return f"{guest}: かこい! {song}! この曲が大好きだ! 歌いたい!"
+       
 
-        
     def check_in_guest(self, *guests):
         denied_entry_list = []
         room_availability = self.check_room_availability()
@@ -43,7 +40,7 @@ class Room:
                 self.pay_entry_fee(guest)
                 self.current_occupancy.append(guest)
                 for song in self.song_list:
-                    print(song)
+                    
                     if guest.favorite_song == song.title:
                         self.favorite_song_react(guest.name, song.title)
             else:
@@ -60,4 +57,9 @@ class Room:
 
     def check_out_all_guests(self):
         self.current_occupancy.clear()
+
+    def order_drink(self, drink):
+        self.bar_tab.append(drink)
     
+   
+

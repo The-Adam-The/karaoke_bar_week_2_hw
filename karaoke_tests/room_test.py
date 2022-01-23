@@ -2,10 +2,13 @@ import unittest
 from classes.room import Room
 from classes.guest import Guest
 from classes.song import Song
+from classes.drink import Drink
 
 class TestRoom(unittest.TestCase):
     
     def setUp(self):
+
+        #guests
         self.tomomi = Guest("Tomomi", 28, 439900, "Stayin' Alive")
         self.honda = Guest("Honda", 43, 209900, "Guile Theme")
         self.tanaka = Guest("Tanaka", 23, 200390, "Hotel California")
@@ -15,15 +18,27 @@ class TestRoom(unittest.TestCase):
         self.hashimoto = Guest("Hashimoto", 30, 348987, "Jailhouse Rock")
         self.ginko = Guest("Ginko", 32, 200, "Scrub")
 
+        #songs
         self.plastic_love = Song("Plastic Love", "Mariya Takeuchi", "City Pop")
         self.master_of_puppets = Song("Master of Puppets", "Metallica", "Metal")
         self.dancing_queen = Song("Dancing Queen", "Abba", "Pop")
         self.stayin_alive = Song("Stayin' Alive", "BeeGees", "Disco")
 
+        #drinks
+        self.asahi_dry = Drink("Asahi Dry", "Beer", 300)
+        self.smirnoff = Drink("Smirnoff", "Vodka", 250)
+        self.zero = Drink("Zero-Orange", "Alcopop", 100)
+        self.pinot = Drink("Pinot Noir", "Red Wine", 350)
+        self.nihonshyuu = Drink("Nihonshyuu", "Sake", 400)
+        self.orange = Drink("Orange Juice", "Mixer", 100)
+        self.coke = Drink("Coca Cola", "Mixer", 100)
+        self.water = Drink("Water", "Water", 0)
 
-        self.room1 = Room(1, 6, [], [self.plastic_love, self.dancing_queen,])
-        self.room2 = Room(2, 6, [self.tomomi], [self.master_of_puppets])
-        self.room3  = Room(3, 10, [self.tomomi, self.honda, self.tanaka], [self.stayin_alive])
+        #rooms
+        self.room1 = Room(1, 6, [], [self.plastic_love, self.dancing_queen], [self.smirnoff])
+        self.room2 = Room(2, 6, [self.tomomi], [self.master_of_puppets], [self.nihonshyuu, self.nihonshyuu, self.coke, self.nihonshyuu, self.coke, 
+        self.asahi_dry, self.smirnoff, self.asahi_dry, self.smirnoff, self.asahi_dry, self.asahi_dry, self.asahi_dry, self.asahi_dry, self.asahi_dry, self.asahi_dry, self.asahi_dry])
+        self.room3  = Room(3, 10, [self.tomomi, self.honda, self.tanaka], [self.stayin_alive], [])
         
         
 
@@ -84,9 +99,14 @@ class TestRoom(unittest.TestCase):
     def test_check_in_guest_denied_entry(self):
         self.assertEqual("The following guests have insufficient funds: Sarah Ginko" ,self.room1.check_in_guest(self.sarah, self.ginko ))
 
-    def test_guest_responds_to_favorite_song(self):
-        self.assertEqual("Honda: かこい! Guile Theme! この曲が大好きだ! 歌いたい!", self.room1.favorite_song_react(self.honda.name))
+    def test_room_has_bar_tab(self):
+        self.assertEqual([self.smirnoff], self.room1.bar_tab)
+
+     #Is there a way to test if a statement has been printed?
+
+    # def test_guest_responds_to_favorite_song(self):
+    #     self.assertEqual("Honda: かこい! Guile Theme! この曲が大好きだ! 歌いたい!", self.room1.favorite_song_react(self.honda.name, "Guile Theme"))
 
     # def test_guest_responds_to_favorite_song_in_room(self):
     #     self.assertEqual("Tomomi: かこい! Stayin' Alive! この曲が大好きだ! 歌いたい!", self.room3.check_in_guest(self.tomomi))
-        #Is there a way to test if a statement has been printed?
+       

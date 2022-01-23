@@ -11,4 +11,5 @@ class Guest:
             return True
         return False
 
-    
+    def pay_money(self, amount):
+        self.money -= amount
