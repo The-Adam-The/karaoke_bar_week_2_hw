@@ -84,8 +84,8 @@ class TestRoom(unittest.TestCase):
     def test_check_in_guest_denied_entry(self):
         self.assertEqual("The following guests have insufficient funds: Sarah Ginko" ,self.room1.check_in_guest(self.sarah, self.ginko ))
 
-    def test_guest_responds_to_favorite_song(self):
-        self.assertEqual("Honda: かこい! Guile Theme! この曲が大好きだ! 歌いたい!", self.room1.favorite_song_react(self.honda.name))
+    # def test_guest_responds_to_favorite_song(self):
+    #     self.assertEqual("Honda: かこい! Guile Theme! この曲が大好きだ! 歌いたい!", self.room1.favorite_song_react(self.honda.name, "Guile Theme"))
 
     # def test_guest_responds_to_favorite_song_in_room(self):
     #     self.assertEqual("Tomomi: かこい! Stayin' Alive! この曲が大好きだ! 歌いたい!", self.room3.check_in_guest(self.tomomi))
