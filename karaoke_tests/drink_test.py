@@ -4,6 +4,8 @@ from classes.drink import Drink
 class TestDrink(unittest.TestCase):
 
     def setUp(self):
+
+        #drinks
         self.asahi = Drink("Asahi Dry", "Beer", 300)
 
 
